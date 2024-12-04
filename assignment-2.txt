@@ -1,0 +1,101 @@
+--1
+use student;
+create table students(
+    student_id INT primary key,
+    name Varchar(50) not null,
+	age INT CHECK (age BETWEEN 18 AND 25)
+);
+
+alter table students
+add grade decimal(3,1) check(grade between 0.0 and 0.1);
+
+insert into students(student_id , name , age)
+values (123 , "geny" , 30);
+
+insert into students(student_id , name , age)
+values(124 , "kk" , 19);
+
+insert into students(student_id , name , age , grade)
+values(121 , "hh" , 19 , 0.01 );
+
+insert into Students (student_id, name, age, grade)
+values(1, 'Alice', 17, 8.5);
+
+
+--2
+create database course;
+use course ;
+
+create table courses(
+   course_id INT primary key,
+   course_name Varchar(100),
+   credits INT not null
+);
+insert into courses(course_name , credits)
+values('dbms' , 5);
+
+
+--3
+create database online_store;
+use online_store;
+
+create table products (
+   product_id INT primary key,
+   product_name Varchar(100)
+);
+
+create table orders(
+  order_id INT primary key,
+  product_id INT,
+  foreign key (product_id) references products(product_id)
+);
+
+insert into products (product_id, product_name) 
+values (1, 'Laptop'), (2, 'Keyboard');
+
+insert into orders (order_id, product_id) 
+values (3, 999);
+
+
+--4 
+create database MNCs;
+use MNCs;
+create table employees(
+  employee_id INT primary key,
+  email Varchar(50) unique key
+);
+
+insert into employees(employee_id , email)
+values(123 , "abc@gmail.com");
+
+insert into employees(employee_id , email)
+values(1110 , "abc@gmil.com");
+
+insert into employees(employee_id)
+values(11);
+
+insert into employees(employee_id , email)
+values(11);
+
+
+--5 
+create database user;
+use user;
+create table accounts(
+    Account_id INT primary key,
+    Mobile_number Varchar(10),
+    Balance Decimal(10,2),
+    check (length(Mobile_number) = 10),
+    check(balance >= 0)
+);
+
+create table transactions(
+  transaction_id Int primary key,
+  Account_id Int,
+  Transaction_acc Decimal,
+  Foreign key (Account_id) references accounts(Account_id)
+);
+
+insert into Transactions (transaction_id, Account_id, Transaction_acc)
+values (1, 999, 100.00); 
+
